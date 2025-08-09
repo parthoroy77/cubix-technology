@@ -1,4 +1,5 @@
 export type Article = {
+  id: string | number;
   title: string;
   author: string;
   views: number;
@@ -9,6 +10,7 @@ export type Article = {
   content: string;
   readTimeMinutes: number;
   publishedAt: string;
+  status: "published" | "draft";
 };
 
 export type User = {
@@ -17,3 +19,15 @@ export type User = {
   email: string;
   role: "admin" | "editor";
 };
+
+export interface ArticleFilters {
+  search: string;
+  author: string;
+  dateRange: {
+    from: string;
+    to: string;
+  };
+  status: string;
+  sortBy: "views" | "likes" | "comments" | "publishedAt";
+  sortOrder: "asc" | "desc";
+}

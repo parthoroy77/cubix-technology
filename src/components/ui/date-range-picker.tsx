@@ -2,15 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ClassValue } from "clsx";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { type DateRange } from "react-day-picker";
 import { Calendar } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
-const DateRangePicker = ({ className }: React.HTMLAttributes<HTMLDivElement>) => {
-  const [date, setDate] = React.useState<DateRange | undefined>(undefined);
+const DateRangePicker = ({ className, onChange }: { className?: ClassValue; onChange: (date: DateRange) => void }) => {
+  const [date, setDate] = useState<DateRange | undefined>(undefined);
+
+  useEffect(() => {
+    if (date) {
+      onChange(date);
+    }
+  }, [date]);
 
   return (
     <div className={cn("grid gap-2", className)}>

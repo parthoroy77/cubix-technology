@@ -1,11 +1,11 @@
 "use client";
 import ArticleTable from "@/components/dashboard/article-table";
+import ArticleView from "@/components/dashboard/article-view";
 import DashFilters from "@/components/dashboard/dash-filters";
 import KPICards from "@/components/dashboard/kpi-cards";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useAuthContext } from "@/contexts/auth-context";
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -29,25 +29,7 @@ const DashboardPage = () => {
       </div>
       <KPICards />
       <DashFilters />
-      <div className="col-span-2 space-y-3">
-        <ArticleTable />
-        <div className="flex items-center justify-between text-xs">
-          <h6 className="font-medium">Showing 5 of 20 articles</h6>
-          <div className="flex items-center gap-3">
-            <Button variant={"outline"} className="h-7 shadow-none">
-              <ChevronLeft />
-              Previous
-            </Button>
-            <div>
-              <span>Page 1 of 0</span>
-            </div>
-            <Button variant={"outline"} className="h-7 shadow-none">
-              Next
-              <ChevronRight />
-            </Button>
-          </div>
-        </div>
-      </div>
+      <ArticleView />
     </div>
   );
 };

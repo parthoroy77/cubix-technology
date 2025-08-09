@@ -1,10 +1,14 @@
 "use client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useArticleContext } from "@/contexts/article-context";
 import { articlesData } from "@/data/article";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Pen, Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
+
 const ArticleTable = () => {
+  const { filteredArticles } = useArticleContext();
   return (
     <div className="flex-1 overflow-hidden rounded-xl border">
       <Table>
@@ -17,11 +21,12 @@ const ArticleTable = () => {
             <TableHead>Likes</TableHead>
             <TableHead>Comments</TableHead>
             <TableHead>Published</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {articlesData.slice(0, 5).map((article, i) => (
+          {filteredArticles.slice(0, 5).map((article, i) => (
             <TableRow key={i} className="text-sm">
               <TableCell className="font-medium">
                 <div className="max-w-xs">
@@ -46,6 +51,16 @@ const ArticleTable = () => {
               </TableCell>
               <TableCell className="text-muted-foreground text-xs">
                 {format(new Date(article.publishedAt), "MM/dd/yyyy - hh:mm a")}
+              </TableCell>
+              <TableCell className="font-semibold">
+                <span
+                  className={cn(
+                    "rounded-md border px-2 py-0.5 text-xs capitalize",
+                    article.status === "published" ? "bg-green-800 text-white" : "bg-muted"
+                  )}
+                >
+                  {article.status}
+                </span>
               </TableCell>
               <TableCell>
                 <div className="flex items-center justify-start gap-1">

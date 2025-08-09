@@ -13,6 +13,8 @@ export const articlesData: Article[] = [
     content:
       "In this article, we explore the future of AI and how it will shape the world. From autonomous machines to intelligent assistants, AI is already impacting industries and daily life.",
     readTimeMinutes: 8,
+    id: 1,
+    status: "published",
   },
   {
     title: "How to Master the Art of Cooking Pasta",
@@ -26,6 +28,8 @@ export const articlesData: Article[] = [
     content:
       "This guide will take you through the essential steps to cook perfect pasta every time. From selecting the right type of pasta to pairing it with the ideal sauce.",
     readTimeMinutes: 5,
+    id: 2,
+    status: "published",
   },
   {
     title: "The Rise of Electric Vehicles in 2025",
@@ -39,6 +43,8 @@ export const articlesData: Article[] = [
     content:
       "Electric vehicles are becoming more popular as both consumers and manufacturers embrace sustainable transportation options. This article dives deep into the latest advancements and trends.",
     readTimeMinutes: 10,
+    id: 3,
+    status: "published",
   },
   {
     title: "How to Start a Successful Blog in 2025",
@@ -52,6 +58,8 @@ export const articlesData: Article[] = [
     content:
       "Starting a blog is easier than ever, but turning it into a successful business requires the right approach. In this article, we break down the steps to grow your blog audience and monetize it.",
     readTimeMinutes: 7,
+    id: 4,
+    status: "published",
   },
   {
     title: "Exploring the Best Hiking Trails in the US",
@@ -65,6 +73,8 @@ export const articlesData: Article[] = [
     content:
       "Whether you're a seasoned hiker or a beginner, the US has some of the best trails to explore. From the Rockies to the Appalachian Mountains, this guide covers the top hiking spots.",
     readTimeMinutes: 9,
+    id: 5,
+    status: "published",
   },
   {
     title: "How Blockchain Will Change the Financial World",
@@ -78,6 +88,8 @@ export const articlesData: Article[] = [
     content:
       "Blockchain technology is revolutionizing the financial sector. In this article, we discuss how blockchain can reduce fraud, streamline transactions, and enhance transparency in finance.",
     readTimeMinutes: 6,
+    id: 6,
+    status: "published",
   },
   {
     title: "10 Secrets to Boost Your Mental Health",
@@ -91,6 +103,8 @@ export const articlesData: Article[] = [
     content:
       "Mental health is just as important as physical health. In this article, we cover 10 simple strategies that can help you maintain a positive mental state and improve overall well-being.",
     readTimeMinutes: 8,
+    id: 7,
+    status: "published",
   },
   {
     title: "The Best Gadgets of 2025",
@@ -104,6 +118,8 @@ export const articlesData: Article[] = [
     content:
       "From foldable phones to smart home devices, this list covers the top gadgets of 2025. These innovations are changing the way we live and interact with technology.",
     readTimeMinutes: 7,
+    id: 8,
+    status: "published",
   },
   {
     title: "The Power of a Plant-Based Diet",
@@ -117,6 +133,8 @@ export const articlesData: Article[] = [
     content:
       "Plant-based diets are becoming more popular for their health benefits and sustainability. This article explains how adopting a plant-based diet can improve your health and reduce your environmental footprint.",
     readTimeMinutes: 6,
+    id: 9,
+    status: "published",
   },
   {
     title: "Mastering SEO in 2025: A Beginner's Guide",
@@ -130,6 +148,8 @@ export const articlesData: Article[] = [
     content:
       "SEO is an essential skill for anyone in digital marketing. This comprehensive guide provides the latest techniques to boost your website’s visibility on search engines.",
     readTimeMinutes: 10,
+    id: 10,
+    status: "published",
   },
   {
     title: "The Rise of Virtual Reality in Education",
@@ -143,6 +163,8 @@ export const articlesData: Article[] = [
     content:
       "Virtual reality (VR) is transforming the classroom experience. This article explores how VR is being used in education to enhance learning and engage students.",
     readTimeMinutes: 8,
+    id: 11,
+    status: "published",
   },
   {
     title: "The Ultimate Guide to Traveling on a Budget",
@@ -156,6 +178,8 @@ export const articlesData: Article[] = [
     content:
       "Traveling doesn’t have to break the bank. This guide provides top tips and resources to help you plan your dream vacation without spending too much.",
     readTimeMinutes: 9,
+    id: 12,
+    status: "published",
   },
   {
     title: "How to Achieve Financial Independence",
@@ -169,6 +193,8 @@ export const articlesData: Article[] = [
     content:
       "Financial independence is a goal for many. This article breaks down the key steps to take control of your money, invest smartly, and eventually achieve financial freedom.",
     readTimeMinutes: 8,
+    id: 13,
+    status: "published",
   },
   {
     title: "The Science of Happiness",
@@ -182,6 +208,8 @@ export const articlesData: Article[] = [
     content:
       "What makes people happy? In this article, we look at the science behind happiness and how you can apply psychological principles to improve your well-being.",
     readTimeMinutes: 7,
+    id: 14,
+    status: "published",
   },
   {
     title: "How to Build a Personal Brand in 2025",
@@ -195,6 +223,8 @@ export const articlesData: Article[] = [
     content:
       "Building a personal brand is more important than ever in 2025. This article offers insights on creating a strong personal brand that resonates with your audience and accelerates your career.",
     readTimeMinutes: 6,
+    id: 15,
+    status: "published",
   },
   {
     title: "The Best Ways to Stay Productive Working from Home",
@@ -208,6 +238,8 @@ export const articlesData: Article[] = [
     content:
       "Remote work is the new normal. Here are the best strategies and tools to stay productive while working from home and avoid distractions.",
     readTimeMinutes: 6,
+    id: 16,
+    status: "published",
   },
   {
     title: "Exploring the Wonders of Space",
@@ -221,6 +253,8 @@ export const articlesData: Article[] = [
     content:
       "Space exploration is one of humanity’s greatest endeavors. In this article, we explore the latest missions, discoveries, and the future of space exploration.",
     readTimeMinutes: 9,
+    id: 17,
+    status: "published",
   },
   {
     title: "5 Tips for a Successful Career Change",
@@ -234,6 +268,8 @@ export const articlesData: Article[] = [
     content:
       "Thinking about changing careers? Here are five actionable tips to help you navigate the transition smoothly and successfully.",
     readTimeMinutes: 7,
+    id: 18,
+    status: "published",
   },
   {
     title: "Understanding Cryptocurrency and Blockchain",
@@ -247,6 +283,8 @@ export const articlesData: Article[] = [
     content:
       "This article explains the basics of cryptocurrency and blockchain technology, providing an introduction for beginners looking to dive into the world of digital currencies.",
     readTimeMinutes: 8,
+    id: 19,
+    status: "published",
   },
   {
     title: "The Art of Negotiation in Business",
@@ -260,6 +298,8 @@ export const articlesData: Article[] = [
     content:
       "Negotiation is a key skill for any business leader. In this article, we share strategies for negotiating effectively and achieving win-win outcomes.",
     readTimeMinutes: 7,
+    id: 20,
+    status: "published",
   },
   {
     title: "How to Boost Your Immune System Naturally",
@@ -273,6 +313,8 @@ export const articlesData: Article[] = [
     content:
       "Your immune system plays a crucial role in keeping you healthy. Learn how to boost your immunity naturally with diet, exercise, and lifestyle changes.",
     readTimeMinutes: 6,
+    id: 21,
+    status: "published",
   },
   {
     title: "The Importance of Work-Life Balance",
@@ -286,6 +328,8 @@ export const articlesData: Article[] = [
     content:
       "Achieving work-life balance can be challenging but essential for long-term well-being. Here are practical tips for finding balance in your professional and personal life.",
     readTimeMinutes: 6,
+    id: 22,
+    status: "draft",
   },
   {
     title: "The Power of Networking in 2025",
@@ -299,6 +343,8 @@ export const articlesData: Article[] = [
     content:
       "Networking is more important than ever in the digital age. This article discusses how to network effectively in 2025 and build meaningful professional relationships.",
     readTimeMinutes: 7,
+    id: 23,
+    status: "published",
   },
   {
     title: "How to Stay Motivated During Tough Times",
@@ -312,6 +358,8 @@ export const articlesData: Article[] = [
     content:
       "Staying motivated during difficult times is a challenge. This article offers practical advice to help you push through adversity and maintain your focus on your goals.",
     readTimeMinutes: 6,
+    id: 24,
+    status: "published",
   },
   {
     title: "The Rise of Remote Learning in 2025",
@@ -325,5 +373,7 @@ export const articlesData: Article[] = [
     content:
       "The education system is evolving with the rise of remote learning. This article explores the benefits and challenges of virtual education in 2025 and how it is reshaping learning.",
     readTimeMinutes: 7,
+    id: 25,
+    status: "draft",
   },
 ];
