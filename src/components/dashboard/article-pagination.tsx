@@ -1,19 +1,34 @@
+"use client";
+import { useArticleContext } from "@/contexts/article-context";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
 
 const ArticlePagination = () => {
+  const { totalPages, filteredArticles, currentPage, handlePagination } = useArticleContext();
   return (
     <div className="flex items-center justify-between text-xs">
-      <h6 className="font-medium">Showing 5 of 20 articles</h6>
+      <h6 className="font-medium">Showing 5 of {filteredArticles.length} articles</h6>
       <div className="flex items-center gap-3">
-        <Button variant={"outline"} className="h-7 shadow-none">
+        <Button
+          disabled={currentPage === 1}
+          onClick={() => handlePagination("prev")}
+          variant={"outline"}
+          className="h-7 shadow-none"
+        >
           <ChevronLeft />
           Previous
         </Button>
         <div>
-          <span>Page 1 of 0</span>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
         </div>
-        <Button variant={"outline"} className="h-7 shadow-none">
+        <Button
+          disabled={currentPage === totalPages}
+          onClick={() => handlePagination("next")}
+          variant={"outline"}
+          className="h-7 shadow-none"
+        >
           Next
           <ChevronRight />
         </Button>

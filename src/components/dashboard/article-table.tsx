@@ -1,14 +1,13 @@
 "use client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useArticleContext } from "@/contexts/article-context";
-import { articlesData } from "@/data/article";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Pen, Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
 
 const ArticleTable = () => {
-  const { filteredArticles } = useArticleContext();
+  const { paginatedArticles } = useArticleContext();
   return (
     <div className="flex-1 overflow-hidden rounded-xl border">
       <Table>
@@ -26,14 +25,14 @@ const ArticleTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredArticles.slice(0, 5).map((article, i) => (
+          {paginatedArticles.map((article, i) => (
             <TableRow key={i} className="text-sm">
               <TableCell className="font-medium">
-                <div className="max-w-xs">
+                <div className="max-w-2xs">
                   <p className="truncate">{article.title}</p>
                 </div>
               </TableCell>
-              <TableCell title={article.content} className="max-w-2xs truncate font-medium">
+              <TableCell title={article.content} className="max-w-3xs truncate font-medium">
                 Content: {article.content}
               </TableCell>
               <TableCell className="font-semibold">

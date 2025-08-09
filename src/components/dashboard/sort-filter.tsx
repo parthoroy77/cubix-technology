@@ -45,10 +45,14 @@ const SortFilter = ({
 }: {
   onChange: (sortBy: ArticleFilters["sortBy"], order: ArticleFilters["sortOrder"]) => void;
 }) => {
-  const [order, setOrder] = useState<ArticleFilters["sortOrder"]>("desc");
-  const [sortBy, setSortBy] = useState<ArticleFilters["sortBy"]>("publishedAt");
+  const [order, setOrder] = useState<ArticleFilters["sortOrder"]>();
+  const [sortBy, setSortBy] = useState<ArticleFilters["sortBy"]>();
 
-  useEffect(() => onChange(sortBy, order), [order, sortBy]);
+  useEffect(() => {
+    if (sortBy && order) {
+      onChange(sortBy, order);
+    }
+  }, [order, sortBy]);
 
   return (
     <Popover>
@@ -57,9 +61,9 @@ const SortFilter = ({
           variant={"outline"}
           size={"sm"}
           role="combobox"
-          className="text-muted-foreground font-medium shadow-none"
+          className="text-muted-foreground font-medium capitalize shadow-none"
         >
-          Sort
+          {sortBy && order ? `${sortBy} / ${order}` : "Sort"}
           <ArrowDownUp className="h-3 w-3 shrink-0" />
         </Button>
       </PopoverTrigger>

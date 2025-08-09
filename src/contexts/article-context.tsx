@@ -5,10 +5,14 @@ import { createContext, ReactNode, useCallback, useContext, useMemo, useState } 
 type ArticleContext = {
   articles: Article[];
   filteredArticles: Article[];
+  paginatedArticles: Article[];
+  totalPages: number;
+  currentPage: number;
 
   filters: ArticleFilters;
   setFilters: (filters: Partial<ArticleFilters>) => void;
   resetFilters: () => void;
+  handlePagination: (action: "next" | "prev") => void;
 
   uniqueAuthors: LabelValuePair[];
 };
@@ -27,9 +31,12 @@ const defaultFilters: ArticleFilters = {
   sortOrder: "desc",
 };
 
+const ITEMS_PER_PAGE = 5;
+
 const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
   const [articles] = useState<Article[] | []>(articlesData);
   const [filtersState, setFiltersState] = useState<ArticleFilters>(defaultFilters);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredArticles = useMemo(() => {
     let filtered = [...articles];
@@ -98,9 +105,44 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
     setFiltersState(defaultFilters);
   }, []);
 
+  // Pagination
+  const totalPages = useMemo(() => {
+    return Math.max(1, Math.ceil(filteredArticles.length / ITEMS_PER_PAGE));
+  }, [filteredArticles]);
+
+  const paginatedArticles = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredArticles.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredArticles, totalPages, currentPage]);
+
+  // Handle page change
+  const handlePagination = useCallback(
+    (action: "next" | "prev") => {
+      setCurrentPage((prevPage) => {
+        if (action === "next") {
+          return Math.min(prevPage + 1, totalPages);
+        } else {
+          return Math.max(prevPage - 1, 1);
+        }
+      });
+    },
+    [totalPages]
+  );
+
   return (
     <ArticleContext.Provider
-      value={{ articles, filters: filtersState, setFilters, filteredArticles, resetFilters, uniqueAuthors }}
+      value={{
+        articles,
+        filters: filtersState,
+        setFilters,
+        filteredArticles,
+        resetFilters,
+        uniqueAuthors,
+        paginatedArticles,
+        handlePagination,
+        totalPages,
+        currentPage,
+      }}
     >
       {children}
     </ArticleContext.Provider>
