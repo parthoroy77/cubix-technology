@@ -13,6 +13,8 @@ type ArticleContext = {
   setFilters: (filters: Partial<ArticleFilters>) => void;
   resetFilters: () => void;
   handlePagination: (action: "next" | "prev") => void;
+  updateArticle: (id: string, updates: Partial<Article>) => void;
+  deleteArticle: (id: string) => void;
 
   uniqueAuthors: LabelValuePair[];
 };
@@ -34,7 +36,7 @@ const defaultFilters: ArticleFilters = {
 const ITEMS_PER_PAGE = 5;
 
 const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
-  const [articles] = useState<Article[] | []>(articlesData);
+  const [articles, setArticles] = useState<Article[] | []>(articlesData);
   const [filtersState, setFiltersState] = useState<ArticleFilters>(defaultFilters);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -129,6 +131,14 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
     [totalPages]
   );
 
+  const updateArticle = useCallback((id: string, updates: Partial<Article>) => {
+    setArticles((prev) => prev.map((article) => (article.id === +id ? { ...article, ...updates } : article)));
+  }, []);
+
+  const deleteArticle = useCallback((id: string) => {
+    setArticles((prev) => prev.filter((article) => article.id !== +id));
+  }, []);
+
   return (
     <ArticleContext.Provider
       value={{
@@ -142,6 +152,8 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
         handlePagination,
         totalPages,
         currentPage,
+        updateArticle,
+        deleteArticle,
       }}
     >
       {children}

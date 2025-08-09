@@ -5,9 +5,10 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Pen, Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
+import ArticleEditModal from "./article-edit-modal";
 
 const ArticleTable = () => {
-  const { paginatedArticles } = useArticleContext();
+  const { paginatedArticles, deleteArticle } = useArticleContext();
   return (
     <div className="flex-1 overflow-hidden rounded-xl border">
       <Table>
@@ -63,10 +64,12 @@ const ArticleTable = () => {
               </TableCell>
               <TableCell>
                 <div className="flex items-center justify-start gap-1">
-                  <Button variant={"outline"} className="size-8 rounded-full p-2 shadow-none">
-                    <Pen className="size-4" />
-                  </Button>
-                  <Button variant={"outline"} className="size-8 rounded-full p-2 shadow-none">
+                  <ArticleEditModal article={article} />
+                  <Button
+                    onClick={() => deleteArticle(article.id.toString())}
+                    variant={"outline"}
+                    className="size-8 rounded-full p-2 shadow-none"
+                  >
                     <Trash2 className="size-4" />
                   </Button>
                 </div>
