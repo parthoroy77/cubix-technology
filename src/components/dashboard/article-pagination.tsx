@@ -1,12 +1,12 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { useArticleContext } from "@/contexts/article-context";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "../ui/button";
 
 const ArticlePagination = () => {
   const { totalPages, filteredArticles, currentPage, handlePagination } = useArticleContext();
   return (
-    <div className="flex flex-col items-center justify-between gap-3 text-xs">
+    <div className="flex flex-col items-center justify-between gap-3 text-xs md:flex-row">
       <h6 className="font-medium">Showing 5 of {filteredArticles.length} articles</h6>
       <div className="flex items-center gap-3">
         <Button

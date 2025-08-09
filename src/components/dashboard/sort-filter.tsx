@@ -2,11 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { ArticleFilters } from "@/types";
 import { ArrowDown, ArrowDownUp, ArrowUp, Check, Circle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Separator } from "../ui/separator";
 
 const sortByItems: { label: string; value: ArticleFilters["sortBy"] }[] = [
   {
@@ -52,7 +52,7 @@ const SortFilter = ({
     if (sortBy && order) {
       onChange(sortBy, order);
     }
-  }, [order, sortBy, onChange]);
+  }, [order, sortBy]);
 
   return (
     <Popover>

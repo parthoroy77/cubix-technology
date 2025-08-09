@@ -1,10 +1,10 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useArticleContext } from "@/contexts/article-context";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Trash2 } from "lucide-react";
-import { Button } from "../ui/button";
 import ArticleEditModal from "./article-edit-modal";
 
 const ArticleTable = () => {

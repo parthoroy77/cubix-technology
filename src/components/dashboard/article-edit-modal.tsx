@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useArticleContext } from "@/contexts/article-context";
+import { debounce } from "@/lib/utils";
 import type { Article } from "@/types";
 import { Pen } from "lucide-react";
 import { useState } from "react";
@@ -112,7 +113,7 @@ const ArticleEditModal = ({ article }: { article: Article }) => {
             <Input
               id="title"
               value={formData.title}
-              onChange={(e) => handleChange("title", e.target.value)}
+              onChange={(e) => debounce(() => handleChange("title", e.target.value), 200)}
               placeholder="Enter article title"
               className={errors.title ? "border-red-500" : ""}
             />

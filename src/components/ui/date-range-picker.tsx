@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ClassValue } from "clsx";
@@ -17,7 +16,7 @@ const DateRangePicker = ({ className, onChange }: { className?: ClassValue; onCh
     if (date) {
       onChange(date);
     }
-  }, [date, onChange]);
+  }, [date]);
 
   return (
     <div className={cn("grid gap-2", className)}>

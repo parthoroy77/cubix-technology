@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Technical Task for Front-End Engineer at Cubix Technology
 
-## Getting Started
+Thank you for the opportunity to work on this task! I’ve thoroughly enjoyed building the dashboard page with all the required features.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [✔] - Display a list of articles in **table** view
+- [✔] - **Filters** by (Search, Author, Status, Date)
+- [✔] - **Sort** by Published At, Views, Likes, or Comments
+- [✔] - **Pagination**
+- [✔] - **Performance Graph** (Bar chart) of article views and likes over time.
+- [✔] - **Daily** and **Monthly** view toggle for chart
+- [✔] - Chart updates based on selected filters
+- [✔] - **Edit Article Modal** with editable fields.
+- [✔] - **Form Validation** for required fields
+- [✔] - Save changes locally or via **mock API**
+- [✔] - Show success message after saving
+- [✔] - **React Context API** used for Auth and Article across the website
+- [✔] - **Debounce** filter inputs for performance
+- [✔] - **Fake Login Page** storing token in `localStorage`
+- [✔] - **Role-based UI logic** (e.g., admin vs editor views)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### # Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18+
+- `pnpm`, `npm`, or `yarn` (any package manager will work)
+- Docker (Optiona for containerized setup)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the Repository**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+       git clone https://github.com/parthoroy77/cubix-technology
+       cd 10ms-landing
+   ```
 
-## Deploy on Vercel
+2. **Install dependencies**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   # Or
+
+   pnpm install
+   ```
+
+3. **Run the Development Server**
+
+   ```bash
+   npm run dev
+
+   # Or
+
+   pnpm dev
+   ```
+
+Visit `http://localhost:3000` in your browser.
+
+4. **Create Production Build**
+
+   ```bash
+   npm run build
+
+   # Or
+
+   pnpm build
+   ```
+
+5. **Start server**
+
+   ```bash
+   npm start
+
+   # Or
+
+   pnpm start
+   ```
+
+---
+
+## Partho Roy
+
+[Portfolio](https://parthoroy.com/) [https://parthoroy.com/]
