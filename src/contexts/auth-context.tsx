@@ -1,8 +1,13 @@
 "use client";
 import { User } from "@/types";
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
-type AuthContext = {};
+interface AuthContext {
+  user: User | null;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => void;
+  isAuthenticated: boolean;
+}
 
 const AuthContext = createContext<AuthContext | null>(null);
 
@@ -18,7 +23,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string): Promise<boolean> => {
     // Store in local storage
-    if (email === "admin@parthoroy.com" && password === "admin123") {
+    if (email === "admin@parthoroy.com" && password === "password123") {
       const userData: User = {
         id: "1",
         name: "Admin User",
@@ -28,7 +33,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       setUser(userData);
       localStorage.setItem("user-auth", JSON.stringify(userData));
       return true;
-    } else if (email === "editor@parthoroy.com" && password === "editor123") {
+    } else if (email === "editor@parthoroy.com" && password === "password123") {
       const userData: User = {
         id: "2",
         name: "Editor User",
@@ -62,3 +67,9 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export default AuthContextProvider;
+
+export const useAuthContext = () => {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error("Auth context must be used within AuthContextProvider");
+  return context;
+};

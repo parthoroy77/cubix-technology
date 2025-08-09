@@ -1,5 +1,6 @@
 import { Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { Box } from "lucide-react";
+import AppSidebarFooter from "./app-sidebar-footer";
 import AppSidebarMenu from "./app-sidebar-menu";
 
 const AppSidebar = () => {
@@ -23,6 +24,7 @@ const AppSidebar = () => {
         </SidebarMenu>
       </SidebarHeader>
       <AppSidebarMenu />
+      <AppSidebarFooter />
     </Sidebar>
   );
 };

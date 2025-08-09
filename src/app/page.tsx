@@ -1,7 +1,20 @@
-import { redirect } from "next/navigation";
+"use client";
+import AuthForm from "@/components/layout/auth-form";
+import { useAuthContext } from "@/contexts/auth-context";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const RootPage = () => {
-  redirect("/dashboard");
+  const { isAuthenticated } = useAuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/dashboard");
+    }
+  }, [isAuthenticated, router]);
+
+  return <AuthForm />;
 };
 
 export default RootPage;

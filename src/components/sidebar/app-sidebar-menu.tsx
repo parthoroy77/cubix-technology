@@ -45,8 +45,9 @@ const AppSidebarMenu = () => {
                       hidden: true,
                     }}
                     className={cn(
-                      "cursor-pointer px-2.5 font-medium tracking-tight md:px-2",
-                      pathname === item.url && "[&_svg]:text-primary bg-secondary text-primary dark:text-white"
+                      "cursor-pointer rounded-lg border px-2.5 font-medium tracking-tight md:px-3",
+                      pathname === item.url &&
+                        "[&_svg]:text-primary text-primary bg-white drop-shadow-xs dark:text-white"
                     )}
                   >
                     <item.icon />
