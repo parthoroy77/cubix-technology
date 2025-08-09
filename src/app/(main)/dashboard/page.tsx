@@ -1,11 +1,9 @@
 "use client";
-import ArticleTable from "@/components/dashboard/article-table";
 import ArticleView from "@/components/dashboard/article-view";
 import DashFilters from "@/components/dashboard/dash-filters";
 import KPICards from "@/components/dashboard/kpi-cards";
-import { Button } from "@/components/ui/button";
+import PerformanceGraph from "@/components/dashboard/performance-graph";
 import { useAuthContext } from "@/contexts/auth-context";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -30,6 +28,7 @@ const DashboardPage = () => {
       <KPICards />
       <DashFilters />
       <ArticleView />
+      <PerformanceGraph />
     </div>
   );
 };

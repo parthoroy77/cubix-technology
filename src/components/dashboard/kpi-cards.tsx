@@ -1,29 +1,31 @@
+import { useArticleContext } from "@/contexts/article-context";
 import { cn } from "@/lib/utils";
 import { Eye, FileText, Heart, MessageCircle } from "lucide-react";
 
 const KPICards = () => {
+  const { stats } = useArticleContext();
   const kpis = [
     {
       title: "Total Articles",
-      value: 20,
+      value: stats.totalArticles,
       icon: FileText,
       color: "text-blue-600",
     },
     {
       title: "Total Views",
-      value: 400,
+      value: stats.totalViews,
       icon: Eye,
       color: "text-green-600",
     },
     {
       title: "Total Likes",
-      value: 4000,
+      value: stats.totalLikes,
       icon: Heart,
       color: "text-red-600",
     },
     {
       title: "Total Comments",
-      value: 438,
+      value: stats.totalComments,
       icon: MessageCircle,
       color: "text-purple-600",
     },
@@ -42,7 +44,7 @@ const KPICards = () => {
               </div>
             </div>
             <div>
-              <div className="text-3xl font-bold">{kpi.value}</div>
+              <div className="text-3xl font-bold">{kpi.value.toLocaleString()}</div>
             </div>
           </div>
         );

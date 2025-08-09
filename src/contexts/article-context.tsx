@@ -1,5 +1,5 @@
 import { articlesData } from "@/data/article";
-import { Article, ArticleFilters, LabelValuePair } from "@/types";
+import { Article, ArticleFilters, LabelValuePair, Performance } from "@/types";
 import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from "react";
 
 type ArticleContext = {
@@ -15,7 +15,14 @@ type ArticleContext = {
   handlePagination: (action: "next" | "prev") => void;
   updateArticle: (id: string, updates: Partial<Article>) => void;
   deleteArticle: (id: string) => void;
+  getPerformanceData: (granularity: "daily" | "monthly") => Performance[];
 
+  stats: {
+    totalArticles: number;
+    totalViews: number;
+    totalComments: number;
+    totalLikes: number;
+  };
   uniqueAuthors: LabelValuePair[];
 };
 
@@ -139,6 +146,48 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
     setArticles((prev) => prev.filter((article) => article.id !== +id));
   }, []);
 
+  // New function to get performance data for charts
+  const getPerformanceData = useCallback(
+    (granularity: "daily" | "monthly"): Performance[] => {
+      const dataMap = new Map<string, { views: number; likes: number; comments: number }>();
+
+      filteredArticles.forEach((article) => {
+        const date = new Date(article.publishedAt);
+        let key: string;
+
+        if (granularity === "daily") {
+          key = article.publishedAt; // YYYY-MM-DD
+        } else {
+          key = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}`; // YYYY-MM
+        }
+
+        const currentData = dataMap.get(key) || { views: 0, likes: 0, comments: 0 };
+        dataMap.set(key, {
+          views: currentData.views + article.views,
+          likes: currentData.likes + article.likes,
+          comments: currentData.comments + article.comments,
+        });
+      });
+
+      // Sort data by date/month
+      const sortedData = Array.from(dataMap.entries())
+        .map(([date, totals]) => ({ date, ...totals }))
+        .sort((a, b) => a.date.localeCompare(b.date));
+
+      return sortedData;
+    },
+    [filteredArticles]
+  );
+
+  // Stats for KPI Card
+  const stats = useMemo(() => {
+    return {
+      totalArticles: filteredArticles.length,
+      totalViews: filteredArticles.reduce((sum, article) => sum + article.views, 0),
+      totalComments: filteredArticles.reduce((sum, article) => sum + article.comments, 0),
+      totalLikes: filteredArticles.reduce((sum, article) => sum + article.likes, 0),
+    };
+  }, [filteredArticles]);
   return (
     <ArticleContext.Provider
       value={{
@@ -154,6 +203,8 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
         currentPage,
         updateArticle,
         deleteArticle,
+        getPerformanceData,
+        stats,
       }}
     >
       {children}

@@ -33,3 +33,7 @@ export interface ArticleFilters {
 }
 
 export type LabelValuePair = { label: string; value: string };
+export type Performance = {
+  date: string; // YYYY-MM-DD or YYYY-MM
+  views: number;
+};
