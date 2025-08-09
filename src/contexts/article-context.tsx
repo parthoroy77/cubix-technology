@@ -79,8 +79,8 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
 
     // Sort
     filtered.sort((a, b) => {
-      let aValue: any = a[filtersState.sortBy];
-      let bValue: any = b[filtersState.sortBy];
+      let aValue = a[filtersState.sortBy];
+      let bValue = b[filtersState.sortBy];
 
       if (filtersState.sortBy === "publishedAt") {
         aValue = new Date(aValue).getTime();
@@ -122,7 +122,7 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
   const paginatedArticles = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredArticles.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [filteredArticles, totalPages, currentPage]);
+  }, [filteredArticles, currentPage]);
 
   // Handle page change
   const handlePagination = useCallback(

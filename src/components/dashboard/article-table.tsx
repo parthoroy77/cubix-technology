@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useArticleContext } from "@/contexts/article-context";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { Pen, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
 import ArticleEditModal from "./article-edit-modal";
 

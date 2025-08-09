@@ -76,6 +76,7 @@ const ArticleEditModal = ({ article }: { article: Article }) => {
       setOpen(false);
     } catch (error) {
       toast.error("Failed to update article");
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -99,7 +100,7 @@ const ArticleEditModal = ({ article }: { article: Article }) => {
         <DialogHeader className="space-y-0">
           <DialogTitle className="font-instrumental-serif font-bold">Edit Article</DialogTitle>
           <DialogDescription className="text-xs">
-            Make changes to the article. Click save when you're done.
+            Make changes to the article. Click save when you are done.
           </DialogDescription>
         </DialogHeader>
 
@@ -137,7 +138,7 @@ const ArticleEditModal = ({ article }: { article: Article }) => {
               <Label className="font-instrumental-serif font-bold tracking-wide" htmlFor="status">
                 Status
               </Label>
-              <Select value={formData.status} onValueChange={(value: any) => handleChange("status", value)}>
+              <Select value={formData.status} onValueChange={(value) => handleChange("status", value)}>
                 <SelectTrigger className="w-full">
                   <SelectValue />
                 </SelectTrigger>

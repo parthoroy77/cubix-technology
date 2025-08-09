@@ -17,7 +17,7 @@ const DateRangePicker = ({ className, onChange }: { className?: ClassValue; onCh
     if (date) {
       onChange(date);
     }
-  }, [date]);
+  }, [date, onChange]);
 
   return (
     <div className={cn("grid gap-2", className)}>

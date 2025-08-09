@@ -52,7 +52,7 @@ const SortFilter = ({
     if (sortBy && order) {
       onChange(sortBy, order);
     }
-  }, [order, sortBy]);
+  }, [order, sortBy, onChange]);
 
   return (
     <Popover>
