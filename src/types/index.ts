@@ -31,3 +31,5 @@ export interface ArticleFilters {
   sortBy: "views" | "likes" | "comments" | "publishedAt";
   sortOrder: "asc" | "desc";
 }
+
+export type LabelValuePair = { label: string; value: string };

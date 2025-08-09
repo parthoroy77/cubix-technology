@@ -1,5 +1,5 @@
 import { articlesData } from "@/data/article";
-import { Article, ArticleFilters } from "@/types";
+import { Article, ArticleFilters, LabelValuePair } from "@/types";
 import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from "react";
 
 type ArticleContext = {
@@ -9,6 +9,8 @@ type ArticleContext = {
   filters: ArticleFilters;
   setFilters: (filters: Partial<ArticleFilters>) => void;
   resetFilters: () => void;
+
+  uniqueAuthors: LabelValuePair[];
 };
 
 const ArticleContext = createContext<ArticleContext | null>(null);
@@ -43,7 +45,7 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
 
     // Filter by Author
     if (filtersState.author) {
-      filtered = filtered.filter((article) => article.author === filtersState.author);
+      filtered = filtered.filter((article) => article.author.split(" ").join().toLowerCase() === filtersState.author);
     }
 
     // Filter by status
@@ -82,14 +84,24 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
   const setFilters = useCallback((newFilters: Partial<ArticleFilters>) => {
     setFiltersState((prev) => ({ ...prev, ...newFilters }));
   }, []);
-  console.log(filtersState);
+
+  const uniqueAuthors = useMemo(
+    () => [
+      ...new Set(
+        articles.map((article) => ({ label: article.author, value: article.author.split(" ").join().toLowerCase() }))
+      ),
+    ],
+    [articles]
+  );
 
   const resetFilters = useCallback(() => {
     setFiltersState(defaultFilters);
   }, []);
 
   return (
-    <ArticleContext.Provider value={{ articles, filters: filtersState, setFilters, filteredArticles, resetFilters }}>
+    <ArticleContext.Provider
+      value={{ articles, filters: filtersState, setFilters, filteredArticles, resetFilters, uniqueAuthors }}
+    >
       {children}
     </ArticleContext.Provider>
   );

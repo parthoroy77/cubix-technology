@@ -3,13 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { ArticleFilters } from "@/types";
 import { ArrowDown, ArrowDownUp, ArrowUp, Check, Circle } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Separator } from "../ui/separator";
 
-const sortByItems = [
+const sortByItems: { label: string; value: ArticleFilters["sortBy"] }[] = [
   {
     label: "Published At",
-    value: "date",
+    value: "publishedAt",
   },
   {
     label: "Likes",
@@ -38,7 +40,16 @@ const orders = [
   },
 ];
 
-const SortFilter = () => {
+const SortFilter = ({
+  onChange,
+}: {
+  onChange: (sortBy: ArticleFilters["sortBy"], order: ArticleFilters["sortOrder"]) => void;
+}) => {
+  const [order, setOrder] = useState<ArticleFilters["sortOrder"]>("desc");
+  const [sortBy, setSortBy] = useState<ArticleFilters["sortBy"]>("publishedAt");
+
+  useEffect(() => onChange(sortBy, order), [order, sortBy]);
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -59,12 +70,13 @@ const SortFilter = () => {
             <Separator />
             <CommandGroup>
               {sortByItems.map((item) => (
-                <CommandItem className="flex items-center gap-2" value={item.label} key={item.value}>
-                  {item.value === item.value ? (
-                    <span className="border-foreground h-3 w-3 rounded-full border-[3.5px]" />
-                  ) : (
-                    <Circle className="h-3 w-3" />
-                  )}
+                <CommandItem
+                  onSelect={(v) => setSortBy(v as ArticleFilters["sortBy"])}
+                  className="flex items-center gap-2"
+                  value={item.value}
+                  key={item.value}
+                >
+                  {item.value === sortBy ? <Circle fill="green" className="h-3 w-3" /> : <Circle className="h-3 w-3" />}
                   {item.label}
                 </CommandItem>
               ))}
@@ -76,15 +88,19 @@ const SortFilter = () => {
             <CommandGroup>
               {orders.map((item) => (
                 <CommandItem
+                  onSelect={(v) => setOrder(v as ArticleFilters["sortOrder"])}
                   className="flex items-center justify-between gap-2 capitalize"
-                  value={item.label}
+                  value={item.value}
                   key={item.value}
                 >
                   <div className="flex items-center gap-2">
                     {item.icon}
                     {item.label}
                   </div>
-                  <Check className={cn("mr-2 h-3 w-3", item.value === item.value ? "opacity-100" : "opacity-0")} />
+                  <Check
+                    color="green"
+                    className={cn("mr-2 h-3 w-3", item.value === order ? "opacity-100" : "opacity-0")}
+                  />
                 </CommandItem>
               ))}
             </CommandGroup>

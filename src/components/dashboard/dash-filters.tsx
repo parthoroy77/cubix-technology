@@ -1,6 +1,7 @@
 "use client";
 import { useArticleContext } from "@/contexts/article-context";
 import { debounce } from "@/lib/utils";
+import { ArticleFilters } from "@/types";
 import { format } from "date-fns";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { type DateRange } from "react-day-picker";
@@ -11,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import SortFilter from "./sort-filter";
 
 const DashFilters = () => {
-  const { setFilters, filters, resetFilters } = useArticleContext();
+  const { setFilters, filters, resetFilters, uniqueAuthors } = useArticleContext();
 
   const handleSearchChange = debounce((e: unknown) => {
     setFilters({ search: e as string });
@@ -23,6 +24,13 @@ const DashFilters = () => {
         from: date ? format(date.from!, "yyyy-MM-dd") : "",
         to: date ? format(date.to!, "yyyy-MM-dd") : "",
       },
+    });
+  };
+
+  const handleSortChange = (sortBy: ArticleFilters["sortBy"], order: ArticleFilters["sortOrder"]) => {
+    setFilters({
+      sortBy,
+      sortOrder: order,
     });
   };
 
@@ -47,17 +55,21 @@ const DashFilters = () => {
             <SelectItem value="draft">Draft</SelectItem>
           </SelectContent>
         </Select>
-        <Select>
+        <Select value={filters.author} onValueChange={(v) => setFilters({ author: v })}>
           <SelectTrigger className="!h-8 w-40 font-medium shadow-none">
             <SelectValue placeholder="All Authors" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Authors</SelectItem>
-            <SelectItem value="john">John Doe</SelectItem>
+            {uniqueAuthors.map((author, i) => (
+              <SelectItem key={i} value={author.value}>
+                {author.label}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
         <DateRangePicker onChange={handleDateChange} />
-        <SortFilter />
+        <SortFilter onChange={handleSortChange} />
         <Button onClick={resetFilters} variant={"destructive"} className="h-7">
           <SlidersHorizontal size={14} />
           Clear
