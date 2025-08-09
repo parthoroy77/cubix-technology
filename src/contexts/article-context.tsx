@@ -146,26 +146,24 @@ const ArticleContextProvider = ({ children }: { children: ReactNode }) => {
     setArticles((prev) => prev.filter((article) => article.id !== +id));
   }, []);
 
-  // New function to get performance data for charts
   const getPerformanceData = useCallback(
     (granularity: "daily" | "monthly"): Performance[] => {
-      const dataMap = new Map<string, { views: number; likes: number; comments: number }>();
+      const dataMap = new Map<string, { views: number; likes: number }>();
 
       filteredArticles.forEach((article) => {
         const date = new Date(article.publishedAt);
         let key: string;
 
         if (granularity === "daily") {
-          key = article.publishedAt; // YYYY-MM-DD
+          key = article.publishedAt;
         } else {
-          key = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}`; // YYYY-MM
+          key = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}`;
         }
 
-        const currentData = dataMap.get(key) || { views: 0, likes: 0, comments: 0 };
+        const currentData = dataMap.get(key) || { views: 0, likes: 0 };
         dataMap.set(key, {
           views: currentData.views + article.views,
           likes: currentData.likes + article.likes,
-          comments: currentData.comments + article.comments,
         });
       });
 

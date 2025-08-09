@@ -24,10 +24,6 @@ export default function PerformanceGraph() {
       label: "Likes",
       color: "var(--chart-2)",
     },
-    comments: {
-      label: "Comments",
-      color: "var(--chart-3)",
-    },
   };
 
   return (
@@ -72,8 +68,8 @@ export default function PerformanceGraph() {
           <YAxis tickLine={false} axisLine={false} tickFormatter={(value) => `${value / 1000}k`} />
           <ChartTooltip content={<ChartTooltipContent />} />
           <Legend />
-          <Bar dataKey="views" fill="var(--chart-1)" radius={4} />
-          <Bar dataKey="likes" fill="var(--chart-2)" radius={4} />
+          <Bar dataKey="views" fill="#0046FF" radius={4} />
+          <Bar dataKey="likes" fill="#001BB7" radius={4} />
         </BarChart>
       </ChartContainer>
     </div>

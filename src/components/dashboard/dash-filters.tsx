@@ -35,7 +35,7 @@ const DashFilters = () => {
   };
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex flex-wrap items-center justify-between gap-3">
       <div className="relative flex max-w-3xs items-center gap-2">
         <Search size={16} className="absolute top-1/2 right-3 z-10 -translate-y-1/2" />
         <Input
@@ -45,7 +45,7 @@ const DashFilters = () => {
           className="h-8 w-full shadow-none"
         />
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <Select value={filters.status} onValueChange={(value) => setFilters({ status: value })}>
           <SelectTrigger className="!h-8 w-40 font-medium shadow-none">
             <SelectValue placeholder="Status" />

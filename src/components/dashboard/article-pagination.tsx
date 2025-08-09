@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 const ArticlePagination = () => {
   const { totalPages, filteredArticles, currentPage, handlePagination } = useArticleContext();
   return (
-    <div className="flex items-center justify-between text-xs">
+    <div className="flex flex-col items-center justify-between gap-3 text-xs">
       <h6 className="font-medium">Showing 5 of {filteredArticles.length} articles</h6>
       <div className="flex items-center gap-3">
         <Button
